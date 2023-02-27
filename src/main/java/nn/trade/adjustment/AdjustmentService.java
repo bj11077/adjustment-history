@@ -11,14 +11,20 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class AdjustmentService extends CommonService {
+public class AdjustmentService extends CommonService<Adjustment,Long,AdjustmentDto> {
 
     public AdjustmentService(AdjustmentRepository repository) {
         super(repository);
+
     }
 
     public void findAllByTitle(String id){
         List<Adjustment> result = ((AdjustmentRepository) repository).findByTitle(id);
         result.forEach(e-> System.out.println(e.getTitle()));
+    }
+
+    @Override
+    public Class<AdjustmentDto> getDtoClass() {
+        return AdjustmentDto.class;
     }
 }

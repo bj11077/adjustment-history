@@ -2,20 +2,20 @@ package nn.trade.adjustment;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import nn.trade.BaseDto;
 import nn.trade.BaseEntity;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.sql.Timestamp;
 
 @Entity
 @Getter
-@SuperBuilder
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tb_adjustment")
-public class Adjustment extends BaseEntity {
+public class AdjustmentDto extends BaseDto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adjustmentId;
@@ -23,7 +23,11 @@ public class Adjustment extends BaseEntity {
     private String title;
 
 
-    public Adjustment() {
-        super();
+    public AdjustmentDto(Adjustment entity){
+        this.adjustmentId = entity.getAdjustmentId();
+        this.title = entity.getTitle();
+        this.createDate = entity.getCreateDate();
+        this.createUser = entity.getCreateUser();
     }
+
 }
