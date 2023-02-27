@@ -25,6 +25,16 @@ public abstract class CommonService<T,P,D> {
         return toDto(repository.findById(id).orElseThrow());
     }
 
+    public D save(D dto) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Object toEntity = getDtoClass().getMethod("toEntity").invoke(dto);
+        System.out.println(toEntity.toString());
+        System.out.println();
+        return toDto(repository.save((T) toEntity));
+    }
+
+    // @TODO 삭제
+
+
     private D toDto(T value)  {
         D dto = null;
         try {

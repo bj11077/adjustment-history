@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,5 +26,14 @@ class AdjustmentServiceTest {
     void findAllTest(){
         List<AdjustmentDto> result = service.findAll();
         result.forEach(e-> System.out.println(e.getTitle()));
+    }
+
+    @Test
+    void saveTest() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        AdjustmentDto dto = new AdjustmentDto();
+        dto.setTitle("tit");
+        dto.setCreateUser("user1");
+        AdjustmentDto save = service.save(dto);
+        System.out.println(save);
     }
 }

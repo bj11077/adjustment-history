@@ -1,10 +1,7 @@
 package nn.trade.adjustment;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import nn.trade.BaseDto;
 import nn.trade.BaseEntity;
@@ -12,6 +9,7 @@ import nn.trade.BaseEntity;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_adjustment")
@@ -29,5 +27,14 @@ public class AdjustmentDto extends BaseDto {
         this.createDate = entity.getCreateDate();
         this.createUser = entity.getCreateUser();
     }
+
+    public Adjustment toEntity(){
+        return Adjustment.builder()
+                .adjustmentId(adjustmentId)
+                .title(title)
+                .createUser(createUser)
+                .build();
+    }
+
 
 }

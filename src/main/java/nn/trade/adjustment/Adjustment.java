@@ -1,10 +1,7 @@
 package nn.trade.adjustment;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import nn.trade.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +14,8 @@ import java.sql.Timestamp;
 @Table(name = "tb_adjustment")
 public class Adjustment extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "item_seq")
+    @SequenceGenerator(name = "item_seq",sequenceName = "item_id_seq",allocationSize = 1)
     private Long adjustmentId;
 
     private String title;
