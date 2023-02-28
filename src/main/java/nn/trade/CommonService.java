@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+
 @RequiredArgsConstructor
-public abstract class CommonService<T,P,D> {
+public abstract class CommonService<T extends BaseEntity,P,D extends BaseDto> {
 
     protected final JpaRepository<T,P> repository;
 
@@ -32,8 +33,9 @@ public abstract class CommonService<T,P,D> {
         return toDto(repository.save((T) toEntity));
     }
 
-    // @TODO 삭제
-
+    public void delete(P id){
+        repository.deleteById(id);
+    }
 
     private D toDto(T value)  {
         D dto = null;
