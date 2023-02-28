@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BaseDto {
+public abstract class BaseDto {
 
     protected Timestamp createDate;
     protected String createUser;
@@ -21,7 +21,7 @@ public class BaseDto {
         this.createUser = entity.getCreateUser();
     }
 
-
+    public abstract BaseEntity toEntity();
 
 
 

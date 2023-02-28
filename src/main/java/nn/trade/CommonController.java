@@ -2,11 +2,9 @@ package nn.trade;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,9 +19,26 @@ public abstract class CommonController<T extends BaseEntity,P,D extends BaseDto>
     }
 
     @GetMapping("/{id}")
-    public D getById(@PathVariable("id") Long id){
-        return null;
+    public D getById(@PathVariable("id") P id){
+        return service.findById(id);
     }
+
+    @PostMapping
+    public D save(@RequestBody D dto) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        return service.save(dto);
+    }
+
+    @PutMapping
+    public D update(@RequestBody D dto) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        return service.save(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable("id") P id){
+        service.delete(id);
+        return true;
+    }
+
 
 
 }

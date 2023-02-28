@@ -5,17 +5,15 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import nn.trade.BaseDto;
 import nn.trade.BaseEntity;
+import nn.trade.adjustment.Adjustment;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tb_adjustment")
 public class AdjustmentDto extends BaseDto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adjustmentId;
 
     private String title;
@@ -28,11 +26,13 @@ public class AdjustmentDto extends BaseDto {
         this.createUser = entity.getCreateUser();
     }
 
+    @Override
     public Adjustment toEntity(){
         return Adjustment.builder()
                 .adjustmentId(adjustmentId)
                 .title(title)
                 .createUser(createUser)
+                .createDate(createDate)
                 .build();
     }
 
