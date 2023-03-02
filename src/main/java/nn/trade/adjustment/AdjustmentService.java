@@ -1,6 +1,7 @@
 package nn.trade.adjustment;
 
 
+import jakarta.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
 import nn.trade.CommonService;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,8 @@ import java.util.List;
 @Slf4j
 public class AdjustmentService extends CommonService<Adjustment,Long, AdjustmentDto> {
 
-    public AdjustmentService(AdjustmentRepository repository) {
-        super(repository);
+    public AdjustmentService(AdjustmentRepository repository, EntityManager em) {
+        super(repository,em);
 
     }
 

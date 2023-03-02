@@ -14,9 +14,4 @@ public class AdjustmentController extends CommonController<Adjustment,Long,Adjus
     public AdjustmentController(AdjustmentService service) {
         super(service);
     }
-
-
-
-
-
 }

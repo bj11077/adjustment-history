@@ -11,6 +11,8 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tb_adjustment")
 public class Adjustment extends BaseEntity {
     @Id
@@ -21,7 +23,4 @@ public class Adjustment extends BaseEntity {
     private String title;
 
 
-    public Adjustment() {
-        super();
-    }
 }

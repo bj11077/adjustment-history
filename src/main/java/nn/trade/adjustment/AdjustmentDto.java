@@ -13,9 +13,8 @@ import nn.trade.adjustment.Adjustment;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdjustmentDto extends BaseDto {
-    @Id
-    private Long adjustmentId;
 
+    private Long adjustmentId;
     private String title;
 
 
