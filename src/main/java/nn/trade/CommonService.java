@@ -29,9 +29,24 @@ public abstract class CommonService<T extends BaseEntity,P,D extends BaseDto> {
     public D save(D dto) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Object toEntity = getDtoClass().getMethod("toEntity").invoke(dto);
         System.out.println(toEntity.toString());
-        System.out.println();
         return toDto(repository.save((T) toEntity));
     }
+
+    public List<D> saveAll(List<D> dtoList){
+        List<T> toEntityList = dtoList.stream().map(e -> {
+            try {
+                return  (T)getDtoClass().getMethod("toEntity").invoke(e);
+            } catch (IllegalAccessException ex) {
+                throw new RuntimeException(ex);
+            } catch (InvocationTargetException ex) {
+                throw new RuntimeException(ex);
+            } catch (NoSuchMethodException ex) {
+                throw new RuntimeException(ex);
+            }
+        }).collect(Collectors.toList());
+        return repository.saveAll(toEntityList).stream().map(this::toDto).collect(Collectors.toList());
+    }
+
 
     public void delete(P id){
         repository.deleteById(id);

@@ -28,6 +28,11 @@ public abstract class CommonController<T extends BaseEntity,P,D extends BaseDto>
         return service.save(dto);
     }
 
+    @PostMapping("/save-all")
+    public List<D> saveAll(@RequestBody List<D> dtoList) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        return service.saveAll(dtoList);
+    }
+
     @PutMapping
     public D update(@RequestBody D dto) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         return service.save(dto);
@@ -38,6 +43,7 @@ public abstract class CommonController<T extends BaseEntity,P,D extends BaseDto>
         service.delete(id);
         return true;
     }
+
 
 
 
