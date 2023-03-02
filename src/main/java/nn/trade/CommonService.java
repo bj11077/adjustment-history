@@ -1,7 +1,9 @@
 package nn.trade;
 
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 public abstract class CommonService<T extends BaseEntity,P,D extends BaseDto> {
 
     protected final JpaRepository<T,P> repository;
+
+    protected final EntityManager em;
 
     public abstract Class<D> getDtoClass();
 
@@ -26,12 +30,16 @@ public abstract class CommonService<T extends BaseEntity,P,D extends BaseDto> {
         return toDto(repository.findById(id).orElseThrow());
     }
 
+    @Transactional
     public D save(D dto) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Object toEntity = getDtoClass().getMethod("toEntity").invoke(dto);
         System.out.println(toEntity.toString());
-        return toDto(repository.save((T) toEntity));
+        T save = repository.saveAndFlush((T) toEntity);
+        em.refresh(save);
+        return toDto(save);
     }
 
+    @Transactional
     public List<D> saveAll(List<D> dtoList){
         List<T> toEntityList = dtoList.stream().map(e -> {
             try {
@@ -44,6 +52,8 @@ public abstract class CommonService<T extends BaseEntity,P,D extends BaseDto> {
                 throw new RuntimeException(ex);
             }
         }).collect(Collectors.toList());
+        List<T> result = repository.saveAllAndFlush(toEntityList);
+        result.forEach(em::refresh);
         return repository.saveAll(toEntityList).stream().map(this::toDto).collect(Collectors.toList());
     }
 
