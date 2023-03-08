@@ -19,6 +19,7 @@ public class User extends BaseEntity {
     @SequenceGenerator(name = "user_seq",sequenceName = "user_id_seq",allocationSize = 1)
     private Long userId;
 
+    @Column(name = "user_name")
     private String username;
 
     private String email;
