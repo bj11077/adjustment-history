@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/adjustment")
+@RequestMapping("/api/adjustment")
 public class AdjustmentController extends CommonController<Adjustment,Long,AdjustmentDto> {
 
     public AdjustmentController(AdjustmentService service) {
