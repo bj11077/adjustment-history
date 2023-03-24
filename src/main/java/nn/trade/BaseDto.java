@@ -1,6 +1,7 @@
 package nn.trade;
 
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,9 @@ import java.sql.Timestamp;
 public abstract class BaseDto {
 
     protected Timestamp createDate;
+
+
+    @NotBlank
     protected String createUser;
 
     public BaseDto(BaseEntity entity){

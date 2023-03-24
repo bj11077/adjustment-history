@@ -1,6 +1,7 @@
 package nn.trade;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +25,19 @@ public abstract class CommonController<T extends BaseEntity,P,D extends BaseDto>
     }
 
     @PostMapping
-    public D save(@RequestBody D dto) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+    public D save(@Valid @RequestBody D dto) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         return service.save(dto);
     }
 
     @PostMapping("/save-all")
-    public List<D> saveAll(@RequestBody List<D> dtoList) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-        return service.saveAll(dtoList);
+    public List<D> saveAll(@Valid @RequestBody ValidDtoList<D> dtoList) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        return service.saveAll(dtoList.getDtoList());
     }
+
+//    @PostMapping("/save-all")
+//    public List<D> saveAll(@Valid @RequestBody List<D> dtoList) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+//        return service.saveAll(dtoList);
+//    }
 
     @PutMapping
     public D update(@RequestBody D dto) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
