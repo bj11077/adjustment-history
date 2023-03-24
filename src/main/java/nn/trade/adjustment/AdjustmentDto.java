@@ -1,6 +1,7 @@
 package nn.trade.adjustment;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import nn.trade.BaseDto;
@@ -15,6 +16,8 @@ import nn.trade.adjustment.Adjustment;
 public class AdjustmentDto extends BaseDto {
 
     private Long adjustmentId;
+
+    @NotBlank
     private String title;
 
 
