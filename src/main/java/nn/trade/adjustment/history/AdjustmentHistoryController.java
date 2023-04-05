@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/adjustment-history")
+@RequestMapping("/api/adjustment-history")
 public class AdjustmentHistoryController extends CommonController<AdjustmentHistory,Long,AdjustmentHistoryDto> {
 
     public AdjustmentHistoryController(AdjustmentHistoryService service) {
