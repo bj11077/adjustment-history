@@ -33,7 +33,7 @@ public class SecurityConfig {
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**","/api/user/**","/error/**")
+                .requestMatchers("/api/auth/**","/api/user/**","/error/**",  "/v3/api-docs/**", "/swagger-ui/**")
                 .permitAll()
                 .requestMatchers("/api/adjustment/**").hasRole("ADMIN")
                 .anyRequest()
