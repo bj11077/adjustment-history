@@ -11,9 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j
-@Component
+//@Component
 @Aspect
 public class LogAspect {
+
+    /**
+     * @TODO
+     * OPENAPI 적용후 고장난거확인
+     * */
 
     @Around("execution(* *..*Service.*(..))")
     public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
