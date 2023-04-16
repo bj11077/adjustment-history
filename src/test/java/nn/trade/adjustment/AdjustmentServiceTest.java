@@ -14,23 +14,5 @@ class AdjustmentServiceTest {
     AdjustmentService service;
 
 
-    @Test
-    void findByTitle() {
-        service.findAllByTitle("title");
-    }
 
-    @Test
-    void findAllTest(){
-        List<AdjustmentDto> result = service.findAll();
-        result.forEach(e-> System.out.println(e.getTitle()));
-    }
-
-    @Test
-    void saveTest() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-        AdjustmentDto dto = new AdjustmentDto();
-        dto.setTitle("tit");
-        dto.setCreateUser("user1");
-        AdjustmentDto save = service.save(dto);
-        System.out.println(save);
-    }
 }
