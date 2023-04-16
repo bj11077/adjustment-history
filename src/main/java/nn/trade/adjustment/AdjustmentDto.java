@@ -1,5 +1,6 @@
 package nn.trade.adjustment;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -8,6 +9,7 @@ import nn.trade.BaseDto;
 import nn.trade.BaseEntity;
 import nn.trade.adjustment.Adjustment;
 
+@Schema(description = "정산 DTO")
 @Getter
 @Setter
 @ToString
@@ -15,8 +17,10 @@ import nn.trade.adjustment.Adjustment;
 @AllArgsConstructor
 public class AdjustmentDto extends BaseDto {
 
+    @Schema(description = "정산ID", example = "1")
     private Long adjustmentId;
 
+    @Schema(description = "제목",example = "제목1")
     @NotBlank
     private String title;
 
