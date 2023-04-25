@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j
-//@Component
+@Component
 @Aspect
 public class LogAspect {
 
@@ -20,7 +20,7 @@ public class LogAspect {
      * OPENAPI 적용후 고장난거확인
      * */
 
-    @Around("execution(* *..*Service.*(..))")
+    @Around("execution(* nn.trade..*Service.*(..) )")
     public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[AOP] Signature : {}",joinPoint.getSignature());
         log.info("[AOP] Target : {}",joinPoint.getTarget());
