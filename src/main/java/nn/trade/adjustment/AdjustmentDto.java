@@ -1,13 +1,9 @@
 package nn.trade.adjustment;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import nn.trade.BaseDto;
-import nn.trade.BaseEntity;
-import nn.trade.adjustment.Adjustment;
 
 @Schema(description = "정산 DTO")
 @Getter
