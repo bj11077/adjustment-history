@@ -15,10 +15,7 @@ import java.util.Date;
 @Aspect
 public class LogAspect {
 
-    /**
-     * @TODO
-     * OPENAPI 적용후 고장난거확인
-     * */
+
 
     @Around("execution(* nn.trade..*Service.*(..) )")
     public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
